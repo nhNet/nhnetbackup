@@ -1,0 +1,443 @@
+
+<!DOCTYPE html><html lang='en' class=''>
+<head><script src='https://static.codepen.io/assets/editor/live/console_runner-1df7d3399bdc1f40995a35209755dcfd8c7547da127f6469fd81e5fba982f6af.js'></script><script src='https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js'></script><meta charset='UTF-8'><meta name="robots" content="noindex"><link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" /><link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" /><link rel="canonical" href="https://codepen.io/mayurbirle/pen/rwozYP" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style class="cp-pen-styles">@import url('https://fonts.googleapis.com/css?family=Courgette');
+body {
+    margin: 0 auto;
+    font-family: 'Courgette', cursive;
+}
+
+.head {
+    width: 100%;
+    text-align: center;
+    margin-top: 25px;
+    font-size: 30px;
+}
+
+.head .time {
+    float: left;
+    width: 200px;
+    text-weight: 650;
+}
+
+.head .start {
+    display: inline-block;
+    margin: 0 auto;
+    margin-top: -20px;
+    background: #7b7c7d;
+    background-image: linear-gradient(to bottom, #7b7c7d, #242424);
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 22px;
+    padding: 20px 20px 20px 20px;
+    text-decoration: none;
+    text-weight: 600;
+    cursor: pointer;
+}
+
+.head .move {
+    float: right;
+    width: 200px;
+    text-weight: 650;
+}
+
+.room .card {
+    display: inline-flex;
+    width: 145px;
+    height: 145px;
+    position: relative;
+    margin: 5px;
+    transition: .40s;
+    -webkit-transform-style: preserve-3d;
+}
+.room .card .face {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    -webkit-backface-visibility: hidden;
+    z-index: 2;
+}
+.room .card .front {
+    position: absolute;
+    background: url(https://image.flaticon.com/icons/png/512/12/12195.png)
+    white;
+    box-shadow:inset 3px 3px 20px 2px black;
+    border-radius:10px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    z-index: 1;
+}
+.room .card .back {
+    transform: rotateY(-180deg);
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    border-radius:10px;
+}
+
+.flip, .fliped {
+    transform: rotateY(180deg);
+    transition: .40s;
+}
+
+.board {
+    position: relative;
+    width: 400px;
+    top: -425px;
+    height: 300px;
+    border: 15px inset teal;
+    border-radius: 20px;
+    margin: 0 auto;
+    text-align: center;
+    background: #fff;
+    color: #4d4ba3;
+    box-shadow: 0px 0px 50px 0px rgba(50, 50, 50, 0.82);
+}
+
+.board .greet {
+    font-size: 45px;
+    margin: 10px;
+    font-weight: 700;
+}
+
+.board .scr {
+    font-size: 27px;
+    margin: 10px;
+    font-weight: 500;
+}
+
+.board .scr_time {
+    display: inline-flex;
+    font-size: 27px;
+    margin: 10px;
+    font-weight: 600;
+}
+
+.board .scr_move {
+    display: inline-flex;
+    font-size: 27px;
+    margin: 10px;
+    font-weight: 600;
+}
+
+.board .again {
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+    background: #2cbda5;
+    background-image: linear-gradient(to bottom, #2cbda5, #123e59);
+    border-radius: 15px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 25px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+}
+
+.board .again:hover {
+    background: #38c5de;
+    background-image: linear-gradient(to bottom, #38c5de, #325063);
+    text-decoration: none;
+}
+
+.me {
+    font-size: 20px;
+    margin-top: 20px;
+    font-weight: 600;
+}
+
+
+@media only screen and (max-width: 890px) {
+    .room .card {
+        width: 95px;
+        height: 95px;
+    }
+
+    .board {
+        top: -385px;
+    }
+}
+@media only screen and (max-width: 690px) {
+    .room .card {
+        width: 65px;
+        height: 65px;
+    }
+
+    .board {
+        width: 300px;
+        top: -325px;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .room .card {
+        width: 40px;
+        height: 40px;
+    }
+
+    .board {
+        width: 300px;
+        top: -125px;
+    }
+}
+
+@media only screen and (max-width: 290px){
+    .room .card {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .board {
+        width: 300px;
+        top: -90px;
+    }
+}
+
+</style></head><body>
+<div style="color:white;background:black" class='head'>
+<div class='time'>Time: <span class="min">00</span>:<span class="sec">00</span></div>
+<div class='start'>Start Game</div>
+<div class='move'>Moves: <span class="c_move">0</span></div>
+</div>
+<br>
+<br>
+<div class="room" align="center"></div>
+<div class=board>
+<p class="greet">Well Done!</p>
+<p class="scr">Your Score</p>
+<p class='scr_time'>Time : <span class='scr_min'>00</span>:<span class='scr_sec'>00</span> </p>
+<p class="scr_move">Moves :<span class='scr_moves'> 00</span></p>
+<button type="button" class='again'> Again </button>
+<p class="me">Developed by Nicholas Huaman. Logo design by Stefan Jimenez!</p>
+</div>
+<br><br>
+<div style="background:black;color:white; padding:10px;" class='me' align="center"> Developed by Nicholas Huaman. Logo design by Stefan Jimenez!</div>
+<script src='https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js'></script><script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<script id="rendered-js">
+          $(document).ready(function () {
+
+  var img = [
+  'https://nhnet--nicholashuaman.repl.co/img/NHMus.png',
+  'https://nhnet--nicholashuaman.repl.co/img/NHGamesLogo.png',
+  'https://nhnet--nicholashuaman.repl.co/img/Tower.png',
+  'https://nhnet--nicholashuaman.repl.co/img/TimeToils.png',
+  'https://nhnet--nicholashuaman.repl.co/img/Tag.png',
+  'https://nhnet--nicholashuaman.repl.co/img/SpaceGames.png',
+  'https://nhnet--nicholashuaman.repl.co/img/CookieClicker.png',
+  'https://nhnet--nicholashuaman.repl.co/img/PhenomenousPlantations.png',
+  'https://nhnet--nicholashuaman.repl.co/img/2048Mult.png',
+  'https://nhnet--nicholashuaman.repl.co/img/3DStuff.png',
+  'https://nhnet--nicholashuaman.repl.co/img/COC.png',
+  'https://nhnet--nicholashuaman.repl.co/img/NH NET AVATAR.png'];
+
+
+  var total = 0,
+  move = 0,
+  count = 1,
+  first_card = null,
+  secn_card = null;
+
+  var stop_fa = false,
+  stop_fc = true,
+  stop_time = true;
+
+
+  var $card = $('.card'),
+  $board = $('.board'),
+  $start = $('.start'),
+  $again = $('.again');
+
+
+  //4*6 card group;
+  var card_id = 0;
+  for (i = 0; i < 4; i++) {
+    for (j = 0; j < 6; j++) {
+      $('.room').append('    <div class="card" data-id="' + card_id + '"><div class="front face"></div><div  data-bid="0" class="back face" ></div></div>');
+      card_id++;
+    }
+    $('.room').append('<br>');
+  }
+
+
+
+
+  $start.click(function () {
+    total = 0;
+    stop_fa = true;
+    stop_fc = false;
+    stop_time = false;
+    $('.card').removeClass('flip');
+    $start.hide();
+    randomIMG();
+  });
+
+  $again.click(function () {
+    stop_fa = false;
+    stop_fc = true;
+    $start.show();
+    $board.hide();
+    $('.card').removeClass('fliped');
+    randomIMG();
+    flip_auto();
+    flip_auto();
+  });
+
+  $board.hide();
+  randomIMG();
+  flip_auto();
+  flip_auto();
+  flip_auto();
+  flip_click();
+
+  // $('.card').addClass('fliped');
+
+  function randomIMG() {
+
+    var c_array = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12];
+    var c_length = c_array.length;
+    var $card = $('.card');
+
+
+    $card.each(function () {
+      var r_id = Math.floor(Math.random() * (c_length - 1)); // Get Random Number 
+
+
+      var temp = c_array[r_id]; //Swaping
+      c_array[r_id] = c_array[c_length - 1];
+      c_array[c_length - 1] = temp;
+
+
+      c_length--; // decrement c_length by 1
+
+      $(this).find('.back').css({ // Set css
+        'background-image': 'url(' + img[temp - 1] + ')',
+        'background-repeat': 'no-repeat',
+        'background-size': '100%' });
+
+
+      $(this).find('.back').attr('data-bid', temp); // Set data attribute
+    });
+
+    return 0;
+  }
+
+
+
+
+
+  function flip_click() {
+    total = 0;
+    move = 0;
+    count = 1;
+    var i = 0;
+    first_card = null;
+    secn_card = null;
+    var $card = $('.card');
+
+
+
+    $card.find('.front').click(function () {
+
+      if (stop_fc == true) {
+        return 0;
+      }
+
+
+      $(this).parent('.card').toggleClass('flip');
+      move++;
+      $('.c_move').html(move);
+
+      if (count == 1) {
+        first_card = $(this).parent('.card').find('.back').attr('data-bid');
+      } else
+      if (count == 2) {
+        secn_card = $(this).parent('.card').find('.back').attr('data-bid');
+      }
+
+
+      if (first_card == secn_card) {
+
+        $('[data-bid="' + first_card + '"]').parent('.card').addClass('fliped');
+        total++;
+        if (total == 12) {
+
+          stop_time = true;
+
+
+          var sec_f = pad(++sec % 60),
+          min_f = pad(parseInt(sec / 60, 10));
+          stop_fc = reset(move, sec_f, min_f);
+          stop_fc = true;
+          move = 0;
+        }
+
+      }
+      if (stop_fc) {
+        return;
+      }
+      count++;
+      if (count > 2) {
+        console.log(first_card, secn_card);
+        first_card = null;
+        secn_card = null;
+        count = 1;
+        setTimeout(function () {
+          $card.removeClass('flip');
+
+        }, 400);
+      }
+    });
+
+
+    var sec = 0;
+    function pad(val) {return val > 9 ? val : "0" + val;}
+    setInterval(function () {
+      if (stop_time) {
+        sec = 0;
+        return;
+      }
+      $(".sec").html(pad(++sec % 60));
+      $(".min").html(pad(parseInt(sec / 60, 10)));
+    }, 1000);
+
+
+  }
+
+
+  function flip_auto(time) {
+
+    setTimeout(function () {
+      if (stop_fa) {
+        return;
+      }
+
+      var r_ran = randomNum(1, 24);
+      $('[data-id="' + r_ran + '"]').toggleClass('flip');
+
+      var newTime = randomNum(500, 1000);
+      flip_auto(newTime);
+    }, time);
+  }
+
+  function randomNum(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+
+
+
+  function reset(move, sec, min) {
+    $board.show();
+    $board.find('.scr_moves').html(move);
+    $board.find('.scr_sec').html(sec);
+    $board.find('.scr_min').html(min);
+    return true;
+  }
+
+
+
+
+
+});
+          //# sourceURL=pen.js
+        </script>
+</body></html>

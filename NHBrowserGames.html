@@ -1,0 +1,180 @@
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Marko+One&display=swap" rel="stylesheet">
+    <style>
+      body{
+        margin:0;
+        background:url(img/GamesBG.png) no-repeat #007656;
+        background-size:100% 109vh;
+        background-position:0 -9vh;
+        overflow:hidden;
+        user-select:none;
+      }
+      .logo{
+        width:17%;
+        position:absolute;
+        left:33.5%;
+        top:-3vh;
+      }
+      .arrowNext{
+        width:5%;
+        position:absolute;
+        left:74%;
+        border-radius:100%;
+        cursor:pointer;
+        top:62vh;
+      }
+      .arrowBack{
+        width:5%;
+        display:none;
+        position:absolute;
+        left:2%;
+        transform: scaleX(-1);
+        border-radius:100%;
+        cursor:pointer;
+        top:62vh;
+      }
+      .photos{
+        display:flex;
+        width:500%;
+        flex-wrap: wrap;
+        overflow:visible;
+        z-index:0;
+      }
+      .photo {
+        background: #000;
+        /* margin-top: 50vh; */
+        /* display: inline-block; */
+        width: 30vh;
+        margin-left:0.2%;
+        cursor:pointer;
+        height: 30vh;
+        border-radius:5px;
+        /* border: 5px solid #000000; */
+        box-shadow:-1vh 2vh 20px 0 #000;
+      }
+      .tab{
+        text-align:center;
+        color:white;
+        padding-top:15px;
+        background: linear-gradient(180deg,#990404, #CD5C5C);
+        height:100vh;
+        font-family: 'Josefin Sans', sans-serif;
+        line-height:25px;
+        font-weight:800;
+        position:absolute;
+        top:0;
+        left:80%;
+        width:20%;
+        z-index:5;
+        box-shadow:-10px -5px 10px 0 #CD5C5C,-11px -5px 20px 0 #569AD0;
+        /* border-radius:10px 0 0 10px; */
+      }
+      .selected{
+        width:30vh;
+        height:30vh;
+        border-radius:10px;
+        border:2px solid black;
+        background:black;
+      }
+      .playButton{
+        /* margin-top:-10px; */
+        cursor:pointer;
+        /* background:#E57C44; */
+        background:#059505;
+        border:none;
+        background: white;
+        color:#BB2828;
+        font-size:30px;
+        font-family: 'Marko One', serif;
+        padding: 10px 20px 10px 20px;
+        border-radius:10px;
+        outline:none;
+      }
+      .sorry{display:none;}
+      .gameName{font-size:25px;margin-top:50px;}
+      @keyframes dragF1{
+        0%{
+          margin-left:0;
+        }
+        50%{
+          margin-left:-8%;
+          /* transform:skew(2deg); */
+        }
+        100%{
+          margin-left:-18.6%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <img onclick="window.location='v9.html';" src="img/BackArrow.png" class="backArrow" style="cursor:pointer;position:absolute;top:-4px;left:-4px;width:8%;">
+    <img onclick="window.location='Music';" style="z-index:1000;cursor:pointer;position:absolute;top:6vh;left:46%;width:10vh;height:10vh;" src="img/ArrowRight.png">
+    <img onclick="window.location='NHBrowserProducts.html';" style="z-index:1000;cursor:pointer;position:absolute;transform:scaleX(-1);top:6vh;left:33%;width:10vh;height:10vh;" src="img/ArrowRight.png">
+    <img draggable="false" class="logo" src="img/NHNetGamesLogo.png">
+    <div class="tab">
+      <img draggable="false" class="selected" src="img/Tag.png">
+      <h1 class="gameName">Game Name</h1>
+      <p class="info">SomeInfoHere</p>
+      <!-- <img draggable="false" class="playButton" src="img/PlayButton(Official).png"> -->
+      <button class="playButton">Start</button>
+      <div style="position:absolute;bottom:5px;"><p class="sorry">This page was made for 1366x768 resolution. Sorry if you can't see everything on the page.</p><p><br>All games were programmed by<br>Nicholas Huaman<br><span style="font-size:10px">(except for Tunneler, created by Geoffrey Silverton)</span><br><br>The awesome graphic design was made by Stefan Jimenez.<br><br>- NH Net Browser 2019</p></div>
+    </div>
+  <div style="position:absolute;top:50vh;" class="photos">
+    <div onclick="selectGame(0)" data-text="NH Tag_/_A 2D server tag game!_/_https://nhtag--nicholashuaman.repl.co/" class="photo NHTag" style="background-image: url(img/Tag.png);background-size:30vh 30vh;margin-top:1vh;"></div>
+    <div onclick="selectGame(1)" data-text="NH Platformer_/_An experiment success!_/_Games/platformer.html" class="photo NHPlatformer" style="background-image: url(img/platformerScreenshot.png);background-size:30vh 30vh;margin-top:1vh;"></div>
+    <div onclick="selectGame(2)" data-text="Castle of Crickets_/_Control a tiny, aggressive sphere!_/_https://castles--nicholashuaman.repl.co" class="photo COC" style="background-image: url(img/COC.png);background-size:30vh 30vh;margin-top:1vh;"></div>
+    <div onclick="selectGame(3)" data-text="2048 Multiplayer_/_A classic, now multiplayer!_/_https://nh-2048-server-1--nicholashuaman.repl.co/" class="photo 2048" style="background-image: url(img/2048Mult.png);background-size:30vh 30vh;margin-top:1vh;"></div>
+    <div onclick="selectGame(4)" data-text="Towers Of Torrentious_/_Build into the sky!_/_https://nhnet--nicholashuaman.repl.co/Games/towerGame.html" class="photo Tower" style="background-image: url(img/Tower.png);background-size:30vh 30vh;margin-top:1vh;"></div>
+    <div onclick="selectGame(5)" data-text="NH Superhot_/_Time moves when you move!_/_https://nhnet--nicholashuaman.repl.co/super-hot/" class="photo SuperHot" style="background-image: url(img/NHSuperhot.png);background-size:30vh 30vh;margin-top:1vh;"></div>
+    <div onclick="selectGame(6)" data-text="Farm Simulator (PP)_/_An addictive idle game!_/_https://nhnet--nicholashuaman.repl.co/Games/farm.html" class="photo Farm" style="background-image: url(img/PhenomenousPlantations.png);background-size:30vh 30vh;margin-top:1vh;"></div>
+    <div onclick="selectGame(7)" data-text="Tunneler_/_A fun 2D tank game!<br>(THIS IS NOT MY GAME)_/_https://nhnet--nicholashuaman.repl.co/Huamatank/" class="photo Tunneler" style="background-image: url(https://nhnet--nicholashuaman.repl.co/img/Blue.png);background-size:30vh 30vh;margin-top:1vh;"></div>
+    <div onclick="selectGame(8)" data-text="SpaceGames_/_Rocket Games!_/_https://nhnet--nicholashuaman.repl.co/Games/rocketGame.html" class="photo Rocket" style="background-image: url(img/SpaceGames.png);background-size:30vh 30vh;margin-top:1vh;"></div>
+    <div onclick="selectGame(9)" data-text="NH 3D_/_A 3D Third Person Shooter_/_https://3D--nicholashuaman.repl.co" class="photo 3D" style="background-image: url(img/3DStuff.png);background-size:30vh 30vh;margin-top:1vh;"></div>
+  </div>
+  <!-- https://cdn1.iconfinder.com/data/icons/general-9/500/right_arrow-512.png -->
+  <img draggable="false" onmouseover="marginInterval=setInterval(function(){changeMargin('+');},30);" onmouseout="clearInterval(marginInterval);" class="arrowNext" src="img/rightBtnGames.png">
+  <img draggable="false" onmouseover="marginInterval=setInterval(function(){changeMargin('-');},30);" onmouseout="clearInterval(marginInterval);" class="arrowBack" src="img/rightBtnGames.png">
+    <script>
+      var marginNum=0,
+      marginInterval;
+      if(window.innerWidth!=1366){
+        document.querySelector('.sorry').style.display='block';
+      }
+      function selectGame(gameId){
+        document.querySelector('.selected').src=document.querySelectorAll('.photo')[gameId].style.backgroundImage.replace('url("','').replace('")','');
+        document.querySelector('.gameName').innerHTML=document.querySelectorAll('.photo')[gameId].dataset.text.split('_/_')[0];
+        document.querySelector('.info').innerHTML=document.querySelectorAll('.photo')[gameId].dataset.text.split('_/_')[1];
+        document.querySelector('.playButton').onclick=function(){
+          window.location=document.querySelectorAll('.photo')[gameId].dataset.text.split('_/_')[2];
+        }
+      }
+      selectGame(0);
+      function changeMargin(margin){
+        // if(marginNum!=0){
+          document.querySelector('.photos').style.animation='none';
+        // }else{
+        //   document.querySelector('.photos').style.animation='dragF1 1s forwards';
+        // }
+        if(margin=='-'){
+          marginNum+=2;
+        }else{
+          marginNum-=2;
+        }
+        for(var i=0;i<document.querySelectorAll('.photos').length;i++){
+        document.querySelectorAll('.photos')[i].style.marginLeft=marginNum.toString()+'vh';
+        }
+        if(marginNum<-1){
+          document.querySelector('.arrowBack').style.display='block';
+        }else{
+          document.querySelector('.arrowBack').style.display='none';
+        }
+        if(marginNum>-200){
+          document.querySelector('.arrowNext').style.display='block';
+        }else{
+          document.querySelector('.arrowNext').style.display='none';
+        }
+      }
+    </script>
+  </body>
+</html>

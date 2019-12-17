@@ -1,0 +1,464 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
+<title>CodePen - Zdog Spaceship</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<style>
+      :root {
+  --ship-color: #F9E2FE;
+  --ship-darken-color: #ECD6F0;
+  --ship-accent-color: crimson;
+  --ship-porthole-color: white;
+  --ship-wing-color: #4C3198;
+  --ship-booster-color: #C38382;
+  --ship-fuel-color: yellow;
+  --sky-color: #1C1740;
+  --star-color: white;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--sky-color);
+}
+
+canvas {
+  position: relative;
+  cursor: move;
+  z-index: 2;
+  margin-left:500px;
+}
+
+.stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  background-color: white;
+  box-shadow: 41vw 127vh var(--star-color), 97vw 79vh var(--star-color), 188vw 24vh var(--star-color), 74vw 38vh var(--star-color), 9vw 36vh var(--star-color), 105vw 100vh var(--star-color), 166vw 56vh var(--star-color), 76vw 156vh var(--star-color), 117vw 52vh var(--star-color), 74vw 106vh var(--star-color), 120vw 156vh var(--star-color), 48vw 91vh var(--star-color), 195vw 6vh var(--star-color), 45vw 177vh var(--star-color), 193vw 105vh var(--star-color), 164vw 154vh var(--star-color), 83vw 60vh var(--star-color), 157vw 198vh var(--star-color), 102vw 196vh var(--star-color), 21vw 44vh var(--star-color), 200vw 190vh var(--star-color), 12vw 80vh var(--star-color), 11vw 18vh var(--star-color), 147vw 51vh var(--star-color), 152vw 6vh var(--star-color), 69vw 130vh var(--star-color), 116vw 121vh var(--star-color), 44vw 194vh var(--star-color), 132vw 152vh var(--star-color), 7vw 123vh var(--star-color), 82vw 114vh var(--star-color), 50vw 173vh var(--star-color), 82vw 154vh var(--star-color), 86vw 26vh var(--star-color), 73vw 75vh var(--star-color), 103vw 60vh var(--star-color), 192vw 105vh var(--star-color), 143vw 22vh var(--star-color), 17vw 115vh var(--star-color), 19vw 29vh var(--star-color), 45vw 137vh var(--star-color), 59vw 161vh var(--star-color), 69vw 195vh var(--star-color), 46vw 119vh var(--star-color), 74vw 122vh var(--star-color), 34vw 179vh var(--star-color), 3vw 198vh var(--star-color), 130vw 4vh var(--star-color), 101vw 97vh var(--star-color), 106vw 164vh var(--star-color), 192vw 65vh var(--star-color), 35vw 75vh var(--star-color), 17vw 168vh var(--star-color), 116vw 135vh var(--star-color), 83vw 159vh var(--star-color), 191vw 65vh var(--star-color), 199vw 155vh var(--star-color), 88vw 74vh var(--star-color), 31vw 95vh var(--star-color), 55vw 10vh var(--star-color), 181vw 1vh var(--star-color), 85vw 34vh var(--star-color), 35vw 11vh var(--star-color), 143vw 81vh var(--star-color), 90vw 70vh var(--star-color), 57vw 29vh var(--star-color), 136vw 169vh var(--star-color), 187vw 139vh var(--star-color), 154vw 58vh var(--star-color), 52vw 20vh var(--star-color), 147vw 71vh var(--star-color), 92vw 62vh var(--star-color), 36vw 115vh var(--star-color), 47vw 62vh var(--star-color), 85vw 57vh var(--star-color), 186vw 174vh var(--star-color), 78vw 41vh var(--star-color), 172vw 161vh var(--star-color), 191vw 132vh var(--star-color), 185vw 72vh var(--star-color), 103vw 108vh var(--star-color), 61vw 182vh var(--star-color), 136vw 161vh var(--star-color), 170vw 94vh var(--star-color), 55vw 58vh var(--star-color), 98vw 196vh var(--star-color), 172vw 175vh var(--star-color), 157vw 114vh var(--star-color), 102vw 138vh var(--star-color), 3vw 101vh var(--star-color), 137vw 62vh var(--star-color), 125vw 78vh var(--star-color), 120vw 174vh var(--star-color), 87vw 4vh var(--star-color), 105vw 59vh var(--star-color), 40vw 158vh var(--star-color), 70vw 146vh var(--star-color), 179vw 63vh var(--star-color), 173vw 154vh var(--star-color), 44vw 66vh var(--star-color), 19vw 1vh var(--star-color), 19vw 8vh var(--star-color), 125vw 43vh var(--star-color), 190vw 66vh var(--star-color), 129vw 130vh var(--star-color), 95vw 102vh var(--star-color), 143vw 103vh var(--star-color), 138vw 48vh var(--star-color), 125vw 200vh var(--star-color), 103vw 117vh var(--star-color), 152vw 155vh var(--star-color), 191vw 200vh var(--star-color), 41vw 89vh var(--star-color), 83vw 48vh var(--star-color), 61vw 146vh var(--star-color), 73vw 191vh var(--star-color), 107vw 7vh var(--star-color), 54vw 5vh var(--star-color), 148vw 134vh var(--star-color), 9vw 196vh var(--star-color), 172vw 103vh var(--star-color), 155vw 149vh var(--star-color), 81vw 41vh var(--star-color), 57vw 58vh var(--star-color), 54vw 143vh var(--star-color), 133vw 127vh var(--star-color), 43vw 196vh var(--star-color), 159vw 132vh var(--star-color), 38vw 164vh var(--star-color), 127vw 86vh var(--star-color), 156vw 22vh var(--star-color), 62vw 145vh var(--star-color), 48vw 10vh var(--star-color), 25vw 139vh var(--star-color), 102vw 124vh var(--star-color), 70vw 172vh var(--star-color), 115vw 131vh var(--star-color), 77vw 11vh var(--star-color), 38vw 84vh var(--star-color), 156vw 83vh var(--star-color), 78vw 133vh var(--star-color), 178vw 48vh var(--star-color), 33vw 55vh var(--star-color), 22vw 42vh var(--star-color), 49vw 93vh var(--star-color), 11vw 112vh var(--star-color), 38vw 194vh var(--star-color), 75vw 11vh var(--star-color), 176vw 197vh var(--star-color), 99vw 15vh var(--star-color), 81vw 170vh var(--star-color), 180vw 12vh var(--star-color), 50vw 107vh var(--star-color), 34vw 110vh var(--star-color), 188vw 196vh var(--star-color), 10vw 78vh var(--star-color), 89vw 184vh var(--star-color), 73vw 157vh var(--star-color), 103vw 74vh var(--star-color), 50vw 189vh var(--star-color), 136vw 139vh var(--star-color), 78vw 27vh var(--star-color), 20vw 49vh var(--star-color), 110vw 101vh var(--star-color), 156vw 200vh var(--star-color), 84vw 13vh var(--star-color), 52vw 160vh var(--star-color), 179vw 64vh var(--star-color), 173vw 183vh var(--star-color), 131vw 196vh var(--star-color), 120vw 170vh var(--star-color), 51vw 97vh var(--star-color), 2vw 162vh var(--star-color), 140vw 43vh var(--star-color), 22vw 116vh var(--star-color), 102vw 86vh var(--star-color), 69vw 121vh var(--star-color), 73vw 60vh var(--star-color), 137vw 33vh var(--star-color), 60vw 70vh var(--star-color), 47vw 192vh var(--star-color), 54vw 64vh var(--star-color), 102vw 117vh var(--star-color), 141vw 59vh var(--star-color), 48vw 17vh var(--star-color), 95vw 121vh var(--star-color), 17vw 66vh var(--star-color), 75vw 96vh var(--star-color), 3vw 73vh var(--star-color), 27vw 159vh var(--star-color), 1vw 93vh var(--star-color), 96vw 93vh var(--star-color), 52vw 154vh var(--star-color), 105vw 77vh var(--star-color), 24vw 162vh var(--star-color), 199vw 106vh var(--star-color), 47vw 80vh var(--star-color), 67vw 51vh var(--star-color), 189vw 23vh var(--star-color), 117vw 152vh var(--star-color), 192vw 177vh var(--star-color), 78vw 107vh var(--star-color), 111vw 75vh var(--star-color), 63vw 31vh var(--star-color), 130vw 14vh var(--star-color), 49vw 98vh var(--star-color), 118vw 104vh var(--star-color), 132vw 38vh var(--star-color), 158vw 184vh var(--star-color), 13vw 15vh var(--star-color), 162vw 104vh var(--star-color), 156vw 142vh var(--star-color), 59vw 76vh var(--star-color), 68vw 98vh var(--star-color), 146vw 165vh var(--star-color), 192vw 60vh var(--star-color), 110vw 9vh var(--star-color), 135vw 137vh var(--star-color), 157vw 1vh var(--star-color), 46vw 59vh var(--star-color), 17vw 27vh var(--star-color), 112vw 33vh var(--star-color), 31vw 18vh var(--star-color), 5vw 64vh var(--star-color), 81vw 187vh var(--star-color), 39vw 45vh var(--star-color), 41vw 150vh var(--star-color), 13vw 94vh var(--star-color), 156vw 9vh var(--star-color), 68vw 169vh var(--star-color), 70vw 118vh var(--star-color), 128vw 162vh var(--star-color), 10vw 22vh var(--star-color), 160vw 154vh var(--star-color), 161vw 38vh var(--star-color), 71vw 142vh var(--star-color), 170vw 193vh var(--star-color), 151vw 103vh var(--star-color), 9vw 130vh var(--star-color), 83vw 82vh var(--star-color), 104vw 31vh var(--star-color), 180vw 20vh var(--star-color), 4vw 107vh var(--star-color), 26vw 29vh var(--star-color), 149vw 73vh var(--star-color), 140vw 194vh var(--star-color), 116vw 32vh var(--star-color), 185vw 82vh var(--star-color), 131vw 167vh var(--star-color), 60vw 83vh var(--star-color), 120vw 172vh var(--star-color), 144vw 74vh var(--star-color), 143vw 21vh var(--star-color), 26vw 165vh var(--star-color), 81vw 128vh var(--star-color), 17vw 68vh var(--star-color), 104vw 143vh var(--star-color), 87vw 124vh var(--star-color), 84vw 124vh var(--star-color), 82vw 91vh var(--star-color), 109vw 8vh var(--star-color), 173vw 21vh var(--star-color), 23vw 19vh var(--star-color), 108vw 171vh var(--star-color), 164vw 198vh var(--star-color), 60vw 74vh var(--star-color), 167vw 18vh var(--star-color), 165vw 107vh var(--star-color), 129vw 173vh var(--star-color), 63vw 86vh var(--star-color), 43vw 119vh var(--star-color), 64vw 152vh var(--star-color), 170vw 8vh var(--star-color), 142vw 173vh var(--star-color), 162vw 102vh var(--star-color), 181vw 41vh var(--star-color), 78vw 200vh var(--star-color), 134vw 180vh var(--star-color), 170vw 62vh var(--star-color), 142vw 82vh var(--star-color), 118vw 59vh var(--star-color), 198vw 179vh var(--star-color), 17vw 179vh var(--star-color), 17vw 18vh var(--star-color), 28vw 161vh var(--star-color), 10vw 110vh var(--star-color), 71vw 110vh var(--star-color), 173vw 136vh var(--star-color), 42vw 3vh var(--star-color), 99vw 106vh var(--star-color), 2vw 177vh var(--star-color), 26vw 22vh var(--star-color), 183vw 180vh var(--star-color), 199vw 3vh var(--star-color), 166vw 199vh var(--star-color), 125vw 156vh var(--star-color), 186vw 143vh var(--star-color), 120vw 141vh var(--star-color), 103vw 137vh var(--star-color), 30vw 166vh var(--star-color), 108vw 67vh var(--star-color), 104vw 99vh var(--star-color), 81vw 119vh var(--star-color), 79vw 137vh var(--star-color), 140vw 64vh var(--star-color), 180vw 163vh var(--star-color), 175vw 168vh var(--star-color), 144vw 162vh var(--star-color), 1vw 129vh var(--star-color), 164vw 39vh var(--star-color), 162vw 80vh var(--star-color), 150vw 32vh var(--star-color), 22vw 105vh var(--star-color), 74vw 139vh var(--star-color), 182vw 42vh var(--star-color), 123vw 145vh var(--star-color), 79vw 186vh var(--star-color), 54vw 98vh var(--star-color), 28vw 6vh var(--star-color), 101vw 118vh var(--star-color), 140vw 86vh var(--star-color), 185vw 70vh var(--star-color), 128vw 141vh var(--star-color), 134vw 159vh var(--star-color), 59vw 176vh var(--star-color), 5vw 160vh var(--star-color), 165vw 20vh var(--star-color), 25vw 77vh var(--star-color), 188vw 6vh var(--star-color), 12vw 18vh var(--star-color), 122vw 23vh var(--star-color), 43vw 95vh var(--star-color), 73vw 90vh var(--star-color), 123vw 26vh var(--star-color), 103vw 71vh var(--star-color), 188vw 71vh var(--star-color), 8vw 108vh var(--star-color), 16vw 175vh var(--star-color), 44vw 44vh var(--star-color), 182vw 65vh var(--star-color), 94vw 68vh var(--star-color), 148vw 88vh var(--star-color), 14vw 60vh var(--star-color), 105vw 69vh var(--star-color), 172vw 170vh var(--star-color), 34vw 98vh var(--star-color), 43vw 164vh var(--star-color), 18vw 91vh var(--star-color), 174vw 124vh var(--star-color), 166vw 131vh var(--star-color), 145vw 165vh var(--star-color), 189vw 73vh var(--star-color), 46vw 108vh var(--star-color), 67vw 26vh var(--star-color), 116vw 24vh var(--star-color), 55vw 189vh var(--star-color), 28vw 119vh var(--star-color), 171vw 111vh var(--star-color), 57vw 25vh var(--star-color), 127vw 119vh var(--star-color), 189vw 16vh var(--star-color), 116vw 167vh var(--star-color), 185vw 190vh var(--star-color), 11vw 39vh var(--star-color), 17vw 178vh var(--star-color), 190vw 30vh var(--star-color), 107vw 71vh var(--star-color), 162vw 1vh var(--star-color), 135vw 32vh var(--star-color), 44vw 79vh var(--star-color), 185vw 189vh var(--star-color), 39vw 80vh var(--star-color), 57vw 18vh var(--star-color), 148vw 5vh var(--star-color), 176vw 30vh var(--star-color), 19vw 111vh var(--star-color), 196vw 111vh var(--star-color), 167vw 148vh var(--star-color), 187vw 111vh var(--star-color), 52vw 160vh var(--star-color), 199vw 83vh var(--star-color), 53vw 10vh var(--star-color), 120vw 173vh var(--star-color), 41vw 59vh var(--star-color), 154vw 85vh var(--star-color), 132vw 115vh var(--star-color), 125vw 158vh var(--star-color), 110vw 180vh var(--star-color), 54vw 182vh var(--star-color), 41vw 6vh var(--star-color), 23vw 121vh var(--star-color), 21vw 20vh var(--star-color), 41vw 94vh var(--star-color), 34vw 125vh var(--star-color), 26vw 5vh var(--star-color), 128vw 180vh var(--star-color), 187vw 194vh var(--star-color), 21vw 5vh var(--star-color), 137vw 26vh var(--star-color), 71vw 10vh var(--star-color), 92vw 191vh var(--star-color), 83vw 144vh var(--star-color), 188vw 172vh var(--star-color), 53vw 69vh var(--star-color), 89vw 107vh var(--star-color), 191vw 141vh var(--star-color), 26vw 17vh var(--star-color), 189vw 38vh var(--star-color), 87vw 127vh var(--star-color), 90vw 16vh var(--star-color), 26vw 70vh var(--star-color), 147vw 4vh var(--star-color), 152vw 48vh var(--star-color), 176vw 58vh var(--star-color), 113vw 70vh var(--star-color), 181vw 152vh var(--star-color), 2vw 87vh var(--star-color), 34vw 137vh var(--star-color), 112vw 192vh var(--star-color), 166vw 146vh var(--star-color), 177vw 153vh var(--star-color), 17vw 115vh var(--star-color), 193vw 87vh var(--star-color), 49vw 95vh var(--star-color), 164vw 69vh var(--star-color), 83vw 11vh var(--star-color), 20vw 157vh var(--star-color), 54vw 84vh var(--star-color), 29vw 109vh var(--star-color), 76vw 9vh var(--star-color), 94vw 33vh var(--star-color), 115vw 165vh var(--star-color), 176vw 26vh var(--star-color), 193vw 46vh var(--star-color), 107vw 17vh var(--star-color), 175vw 157vh var(--star-color), 69vw 138vh var(--star-color), 16vw 48vh var(--star-color), 170vw 148vh var(--star-color), 89vw 157vh var(--star-color), 98vw 21vh var(--star-color), 94vw 38vh var(--star-color), 1vw 2vh var(--star-color), 103vw 148vh var(--star-color), 134vw 30vh var(--star-color), 80vw 183vh var(--star-color), 117vw 65vh var(--star-color), 125vw 188vh var(--star-color), 109vw 40vh var(--star-color), 10vw 41vh var(--star-color), 178vw 123vh var(--star-color), 135vw 165vh var(--star-color), 122vw 162vh var(--star-color), 157vw 3vh var(--star-color), 32vw 127vh var(--star-color), 22vw 120vh var(--star-color), 93vw 103vh var(--star-color), 167vw 58vh var(--star-color), 180vw 116vh var(--star-color), 105vw 62vh var(--star-color), 18vw 1vh var(--star-color), 121vw 91vh var(--star-color), 79vw 147vh var(--star-color), 138vw 133vh var(--star-color), 108vw 136vh var(--star-color), 61vw 78vh var(--star-color), 193vw 79vh var(--star-color), 12vw 68vh var(--star-color), 176vw 73vh var(--star-color), 58vw 72vh var(--star-color), 21vw 8vh var(--star-color), 131vw 40vh var(--star-color), 14vw 1vh var(--star-color), 67vw 80vh var(--star-color), 60vw 4vh var(--star-color), 96vw 118vh var(--star-color), 132vw 165vh var(--star-color), 175vw 65vh var(--star-color), 168vw 34vh var(--star-color), 139vw 151vh var(--star-color), 155vw 130vh var(--star-color), 123vw 149vh var(--star-color), 139vw 18vh var(--star-color), 111vw 163vh var(--star-color), 61vw 17vh var(--star-color), 118vw 10vh var(--star-color), 15vw 105vh var(--star-color), 109vw 16vh var(--star-color), 113vw 121vh var(--star-color), 3vw 118vh var(--star-color), 57vw 88vh var(--star-color), 133vw 161vh var(--star-color), 138vw 199vh var(--star-color), 141vw 40vh var(--star-color), 11vw 188vh var(--star-color), 105vw 138vh var(--star-color), 196vw 158vh var(--star-color), 69vw 198vh var(--star-color), 72vw 103vh var(--star-color), 170vw 46vh var(--star-color);
+}
+.stars:before, .stars:after {
+  content: '';
+  display: block;
+  position: absolute;
+}
+.stars:before {
+  width: 2px;
+  height: 2px;
+  box-shadow: 25vw 128vh var(--star-color), 165vw 62vh var(--star-color), 198vw 163vh var(--star-color), 178vw 193vh var(--star-color), 57vw 78vh var(--star-color), 103vw 14vh var(--star-color), 49vw 86vh var(--star-color), 188vw 133vh var(--star-color), 59vw 126vh var(--star-color), 48vw 73vh var(--star-color), 34vw 48vh var(--star-color), 176vw 3vh var(--star-color), 87vw 131vh var(--star-color), 28vw 162vh var(--star-color), 100vw 93vh var(--star-color), 51vw 88vh var(--star-color), 42vw 198vh var(--star-color), 184vw 142vh var(--star-color), 113vw 180vh var(--star-color), 160vw 20vh var(--star-color), 155vw 42vh var(--star-color), 192vw 49vh var(--star-color), 101vw 168vh var(--star-color), 39vw 97vh var(--star-color), 133vw 140vh var(--star-color), 156vw 90vh var(--star-color), 26vw 190vh var(--star-color), 188vw 37vh var(--star-color), 196vw 84vh var(--star-color), 155vw 65vh var(--star-color), 52vw 176vh var(--star-color), 151vw 105vh var(--star-color), 1vw 71vh var(--star-color), 50vw 80vh var(--star-color), 137vw 134vh var(--star-color), 172vw 35vh var(--star-color), 157vw 27vh var(--star-color), 86vw 24vh var(--star-color), 101vw 57vh var(--star-color), 136vw 29vh var(--star-color), 152vw 22vh var(--star-color), 109vw 39vh var(--star-color), 70vw 51vh var(--star-color), 140vw 148vh var(--star-color), 58vw 59vh var(--star-color), 73vw 110vh var(--star-color), 149vw 180vh var(--star-color), 94vw 43vh var(--star-color), 3vw 90vh var(--star-color), 168vw 2vh var(--star-color), 93vw 108vh var(--star-color), 197vw 58vh var(--star-color), 189vw 34vh var(--star-color), 57vw 14vh var(--star-color), 49vw 196vh var(--star-color), 131vw 81vh var(--star-color), 61vw 106vh var(--star-color), 134vw 90vh var(--star-color), 142vw 100vh var(--star-color), 172vw 67vh var(--star-color), 131vw 106vh var(--star-color), 175vw 129vh var(--star-color), 99vw 136vh var(--star-color), 117vw 175vh var(--star-color), 110vw 16vh var(--star-color), 54vw 51vh var(--star-color), 185vw 22vh var(--star-color), 110vw 196vh var(--star-color), 118vw 179vh var(--star-color), 171vw 83vh var(--star-color), 121vw 67vh var(--star-color), 5vw 72vh var(--star-color), 128vw 134vh var(--star-color), 76vw 61vh var(--star-color), 22vw 151vh var(--star-color), 65vw 49vh var(--star-color), 138vw 173vh var(--star-color), 191vw 115vh var(--star-color), 57vw 54vh var(--star-color), 1vw 95vh var(--star-color), 17vw 86vh var(--star-color), 133vw 36vh var(--star-color), 56vw 79vh var(--star-color), 104vw 169vh var(--star-color), 17vw 68vh var(--star-color), 76vw 163vh var(--star-color), 55vw 191vh var(--star-color), 179vw 13vh var(--star-color), 4vw 192vh var(--star-color), 94vw 72vh var(--star-color), 200vw 130vh var(--star-color), 192vw 129vh var(--star-color), 35vw 54vh var(--star-color), 138vw 8vh var(--star-color), 31vw 9vh var(--star-color), 143vw 179vh var(--star-color), 80vw 193vh var(--star-color), 163vw 144vh var(--star-color), 112vw 134vh var(--star-color), 47vw 33vh var(--star-color), 124vw 9vh var(--star-color), 131vw 127vh var(--star-color), 103vw 32vh var(--star-color), 164vw 107vh var(--star-color), 30vw 188vh var(--star-color), 136vw 141vh var(--star-color), 160vw 53vh var(--star-color), 111vw 46vh var(--star-color), 130vw 6vh var(--star-color), 23vw 70vh var(--star-color), 23vw 54vh var(--star-color), 16vw 128vh var(--star-color), 47vw 170vh var(--star-color), 124vw 140vh var(--star-color), 178vw 130vh var(--star-color), 189vw 41vh var(--star-color), 1vw 69vh var(--star-color), 113vw 59vh var(--star-color), 45vw 160vh var(--star-color), 83vw 141vh var(--star-color), 20vw 133vh var(--star-color), 9vw 135vh var(--star-color), 143vw 84vh var(--star-color), 29vw 41vh var(--star-color), 34vw 72vh var(--star-color), 27vw 52vh var(--star-color), 186vw 15vh var(--star-color), 151vw 146vh var(--star-color), 193vw 45vh var(--star-color), 8vw 106vh var(--star-color), 150vw 165vh var(--star-color), 53vw 27vh var(--star-color), 152vw 113vh var(--star-color), 118vw 65vh var(--star-color), 157vw 144vh var(--star-color), 9vw 7vh var(--star-color), 66vw 49vh var(--star-color), 72vw 195vh var(--star-color), 116vw 24vh var(--star-color), 41vw 123vh var(--star-color), 70vw 127vh var(--star-color), 120vw 44vh var(--star-color), 141vw 129vh var(--star-color), 44vw 94vh var(--star-color), 126vw 200vh var(--star-color), 42vw 190vh var(--star-color), 27vw 77vh var(--star-color), 104vw 125vh var(--star-color), 143vw 22vh var(--star-color), 20vw 137vh var(--star-color);
+}
+.stars:after {
+  width: 3px;
+  height: 3px;
+  box-shadow: 104vw 175vh var(--star-color), 106vw 159vh var(--star-color), 1vw 82vh var(--star-color), 133vw 81vh var(--star-color), 135vw 38vh var(--star-color), 45vw 82vh var(--star-color), 16vw 98vh var(--star-color), 4vw 132vh var(--star-color), 115vw 81vh var(--star-color), 111vw 88vh var(--star-color), 125vw 106vh var(--star-color), 189vw 145vh var(--star-color), 155vw 159vh var(--star-color), 91vw 69vh var(--star-color), 177vw 79vh var(--star-color), 143vw 92vh var(--star-color), 35vw 125vh var(--star-color), 41vw 52vh var(--star-color), 101vw 24vh var(--star-color), 30vw 183vh var(--star-color), 20vw 167vh var(--star-color), 160vw 39vh var(--star-color), 119vw 112vh var(--star-color), 34vw 83vh var(--star-color), 166vw 14vh var(--star-color), 70vw 111vh var(--star-color), 62vw 49vh var(--star-color), 151vw 9vh var(--star-color), 120vw 190vh var(--star-color), 47vw 67vh var(--star-color), 41vw 159vh var(--star-color), 5vw 195vh var(--star-color), 119vw 69vh var(--star-color), 3vw 41vh var(--star-color), 139vw 179vh var(--star-color), 185vw 138vh var(--star-color), 193vw 180vh var(--star-color), 72vw 152vh var(--star-color), 194vw 131vh var(--star-color), 159vw 197vh var(--star-color), 71vw 51vh var(--star-color), 143vw 81vh var(--star-color), 150vw 14vh var(--star-color), 200vw 55vh var(--star-color), 172vw 63vh var(--star-color), 71vw 94vh var(--star-color), 60vw 69vh var(--star-color), 41vw 197vh var(--star-color), 158vw 18vh var(--star-color), 68vw 147vh var(--star-color);
+}
+
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<canvas class="ship" width="500" height="500"></canvas>
+<div class="stars"></stars>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script src='https://unpkg.com/zdog@1.0.1/dist/zdog.dist.min.js'></script>
+<script id="rendered-js">
+      const rootStyles = getComputedStyle(document.documentElement);
+
+const colors = {
+  accent: rootStyles.getPropertyValue('--ship-accent-color'),
+  booster: rootStyles.getPropertyValue('--ship-booster-color'),
+  fuel: rootStyles.getPropertyValue('--ship-fuel-color'),
+  porthole: rootStyles.getPropertyValue('--ship-porthole-color'),
+  ship: rootStyles.getPropertyValue('--ship-color'),
+  shipDarken: rootStyles.getPropertyValue('--ship-darken-color'),
+  wing: rootStyles.getPropertyValue('--ship-wing-color') };
+
+
+const bodyLength = 140;
+const bodyDiameter = 80;
+const mainStroke = 10;
+const wingOffset = 1.75;
+
+let isSpinning = true;
+
+// Ship element
+let ship = new Zdog.Illustration({
+  element: '.ship',
+  dragRotate: true,
+  rotate: {
+    x: Zdog.TAU / -6,
+    y: Zdog.TAU / 3,
+    z: Zdog.TAU / -4 },
+
+  onDragStart: () => isSpinning = false,
+  onDragEnd: () => isSpinning = true });
+
+
+// Ship body
+let body = new Zdog.Cylinder({
+  addTo: ship,
+  diameter: bodyDiameter,
+  length: bodyLength,
+  stroke: false,
+  color: colors.ship,
+  backface: colors.shipDarken });
+
+
+// Top of ship
+let cap = new Zdog.Hemisphere({
+  addTo: body,
+  diameter: bodyDiameter,
+  stroke: false,
+  translate: { z: bodyLength / 2 },
+  color: colors.accent });
+
+
+// Porthole group
+let portholeGroup = new Zdog.Group({
+  addTo: body,
+  translate: {
+    x: bodyDiameter / 2 + mainStroke / 2,
+    z: bodyLength / 4 },
+
+  rotate: {
+    x: Zdog.TAU / -4,
+    y: Zdog.TAU / -4 } });
+
+
+
+// Porthole
+let porthole = new Zdog.Ellipse({
+  addTo: portholeGroup,
+  diameter: bodyDiameter / 2,
+  stroke: mainStroke,
+  fill: true,
+  color: colors.accent });
+
+
+porthole.copy({
+  addTo: portholeGroup,
+  diameter: bodyDiameter / 3,
+  stroke: false,
+  fill: true,
+  color: colors.porthole,
+  backface: false });
+
+
+// Top wing
+let wing = new Zdog.Shape({
+  addTo: body,
+  rotate: {
+    x: Zdog.TAU / 4,
+    z: Zdog.TAU / 4 },
+
+  translate: {
+    x: bodyDiameter + mainStroke / 2,
+    z: -bodyLength / wingOffset },
+
+  path: [
+  { x: 0, y: -bodyDiameter / 6 },
+  { x: bodyDiameter / 2, y: bodyDiameter / 2 },
+  { x: 0, y: bodyDiameter / 2 }],
+
+  stroke: mainStroke,
+  fill: true,
+  color: colors.wing });
+
+
+// Right wing
+wing.copy({
+  translate: {
+    y: -bodyDiameter - mainStroke / 2,
+    z: -bodyLength / wingOffset },
+
+  rotate: {
+    x: Zdog.TAU / 4,
+    y: Zdog.TAU / 4,
+    z: Zdog.TAU / 4 } });
+
+
+
+// Left wing
+wing.copy({
+  translate: {
+    y: bodyDiameter + mainStroke / 2,
+    z: -bodyLength / wingOffset },
+
+  rotate: {
+    x: Zdog.TAU / 4,
+    y: Zdog.TAU / -4,
+    z: Zdog.TAU / 4 } });
+
+
+
+// Bottom wing
+wing.copy({
+  rotate: {
+    x: Zdog.TAU / -4,
+    z: Zdog.TAU / -4 },
+
+  translate: {
+    x: -bodyDiameter - mainStroke / 2,
+    z: -bodyLength / wingOffset } });
+
+
+
+// Booster
+let booster = new Zdog.Cylinder({
+  addTo: body,
+  diameter: bodyDiameter / 1.5,
+  length: 20,
+  stroke: false,
+  translate: { z: -bodyLength / 2 - mainStroke },
+  color: colors.booster,
+  backface: colors.fuel });
+
+
+// Movement lines
+let line = new Zdog.Shape({
+  addTo: booster,
+  path: [
+  { x: 0 },
+  { x: 100 }],
+
+  rotate: {
+    x: Zdog.TAU / -4,
+    z: Zdog.TAU / -4 },
+
+  translate: {
+    z: -bodyLength },
+
+  stroke: mainStroke,
+  color: 'rgba(255, 255, 255, 0.25)' });
+
+
+line.copy({
+  path: [
+  { x: 0 },
+  { x: 40 }],
+
+  translate: {
+    x: 10,
+    y: 20,
+    z: -bodyLength / 2 } });
+
+
+
+line.copy({
+  path: [
+  { x: 0 },
+  { x: 60 }],
+
+  translate: {
+    x: -10,
+    y: -20,
+    z: -bodyLength / 1.6 } });
+
+
+
+function movement() {
+  if (isSpinning) ship.rotate.y += 0.0025;
+  ship.updateRenderGraph();
+  requestAnimationFrame(movement);
+}
+
+movement();
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+</body>
+</html>
+
+<!DOCTYPE html><html lang='en' class=''>
+<head><script src='https://static.codepen.io/assets/editor/live/console_runner-1df7d3399bdc1f40995a35209755dcfd8c7547da127f6469fd81e5fba982f6af.js'></script><script src='https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js'></script><meta charset='UTF-8'><meta name="robots" content="noindex"><link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" /><link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" /><link rel="canonical" href="https://codepen.io/cliffpyles/pen/LHlqa" />
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css'><script src='https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js'></script>
+<style class="cp-pen-styles">body {
+  background-color: #000033; 
+  background:url(https://png.pngtree.com/element_our/sm/20180715/sm_5b4af12081953.png);
+	background-size:33.333% 100vh;
+}
+
+.page {
+  color: #222;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.container {
+  transform:scale(1.5);
+  margin-top: -350px;
+  margin-left:700px;
+}
+a{color:inherit;font-weight:bolder;}
+.box-wrapper {
+  perspective: 800px;
+  perspective-origin: 50% 100px;
+}
+
+.box-faces {
+  position: relative;
+  width: 200px;
+  transform-style: preserve-3d;
+}
+
+.box-faces p {
+  padding: 40px 0;
+}
+
+.box-face {
+  /* outline: 1px solid #999; */
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  opacity: 0.98;
+  box-shadow: inset 0px 0px 100px #555;
+}
+
+.box-face--is-back {
+  transform: translateZ(-100px) rotateY(180deg);
+  background-color: #00aa00;
+}
+
+.box-face--is-right {
+  transform: rotateY(-270deg) translateX(100px);
+  transform-origin: top right;
+  background-color: #ddd;
+  background-color: #0022FF;
+}
+
+.box-face--is-left {
+  transform: rotateY(270deg) translateX(-100px);
+  transform-origin: center left;
+  background-color: #ddd;
+  background-color: #0022FF;
+}
+
+.box-face--is-top {
+  transform: rotateX(-90deg) translateY(-100px);
+  transform-origin: top center;
+  background-color: #fafafa;
+}
+
+.box-face--is-bottom {
+  transform: rotateX(90deg) translateY(100px);
+  transform-origin: bottom center;
+  background-color: #bbb;
+}
+.box-face--is-front {
+  transform: translateZ(100px);
+  background-color: #eee;
+  background-color: #00aa00;
+}
+
+@keyframes spin {
+  from {
+    transform: rotateY(0);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+.box-faces, .shadow {
+  animation: spin 15s infinite linear;
+}
+
+.icon-rocket {
+  color: #4F5D75;
+}
+
+.shadow-wrapper {
+  perspective: 800px;
+  perspective-origin: 50% 100px;
+  /*  -webkit-perspective: 800px;
+    -webkit-perspective-origin: 50% 100px;*/
+}
+
+.shadow {
+  position: relative;
+  width: 200px;
+  transform-style: preserve-3d;
+}
+
+.shadow div {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  top: 0px;
+  opacity: 0.98;
+  box-shadow: 0px 0px 100px #000;
+  transform: rotateX(90deg) translateY(100px);
+  transform-origin: bottom center;
+}
+</style></head><body>
+
+<div class="page">
+<div class="container">
+<div class="shadow-wrapper">
+<div class="shadow">
+<div>&nbsp;</div>
+</div>
+</div>
+<div class="box-wrapper">
+<div class="box-faces">
+<a href="savePlanet.html">
+<div class="box-face box-face--is-front">
+<p>
+<i class="icon-rocket icon-4x"></i>SaveThePlanet
+</p>
+</div></a>
+<a href="savePlanet.html">
+<div class="box-face box-face--is-back">
+<p>
+<i class="icon-rocket icon-4x"></i>SaveThePlanet
+</p>
+</div></a>
+<div class="box-face box-face--is-top">&nbsp;</div>
+<div class="box-face box-face--is-bottom">&nbsp;</div>
+<a href="rocketLand.html">
+<div class="box-face box-face--is-left">
+<p>
+<i class="icon-rocket icon-4x"></i>LandTheRocket
+</p>
+</div></a>
+<a href="rocketLand.html">
+<div class="box-face box-face--is-right">
+<p>
+<i class="icon-rocket icon-4x"></i>LandTheRocket
+</p>
+</div></a>
+</div>
+</div>
+</div>
+</div>
+
+<script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+</body></html>

@@ -1,0 +1,277 @@
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <style>
+    html, body {
+      background: url(https://cdn.pixabay.com/photo/2016/01/16/00/59/blue-1142743_960_720.jpg) 0px -20px #0077CC;
+      background-size:100% 110vh;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      color:white;
+    }
+
+    #links {
+      /* margin: 10px 0 0 0; */
+      padding: 10px 0 0 0;
+      width: 100%;
+      text-align: center;
+    }
+    #links li {
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+      font-weight:bolder;
+      margin: 0;
+      padding: 0;
+      background: #326696;
+      color: #A9BED1;
+      border-radius: 6px;
+      display: inline-block;
+      cursor: pointer;
+      line-height: 30px;
+    }
+    #links li:hover {
+      background: #285783;
+    }
+    #about{
+      width: 100px;
+      height: 30px;
+    }
+    #title{
+      width: 140px;
+      height: 30px;
+    }
+    #back{
+      width: 100px;
+      height: 30px;
+    }
+    #about-page {
+      width: 100%;
+      padding: 30px;
+      border-bottom: 1px solid #3D6A94;
+      display: none;
+      position: absolute;
+      top: 50px;
+      left: 0;
+      color:white;
+      z-index: 100;
+      background: #0077CC;
+      box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      /* Firefox */
+    }
+
+    #stage {
+      margin: 25vh auto 0 auto;
+      padding: 0;
+      width: 90%;
+      position: relative;
+    }
+    #stage .shelf {
+      z-index: 2;
+      margin-top: 10px;
+      width: 100%;
+      height: 100px;
+      position: relative;
+    }
+    #stage .shelf:after, #stage .shelf .surface:before {
+      width: 100%;
+      content: "";
+      position: absolute;
+      display: block;
+    }
+    .darkMode{
+      filter:brightness(0.5) grayscale(1);
+    }
+    #stage .shelf:after {
+      height: 10px;
+      background: #2d1600;
+      bottom: 0;
+    }
+    #stage .shelf .surface {
+      width: 100%;
+      top: 50px;
+      -webkit-perspective: 150px;
+      /* Chrome, Safari, Opera  */
+      perspective: 150px;
+      position: relative;
+    }
+    #stage .shelf .surface .photos {
+      position: relative;
+      z-index: 20;
+      text-align: center;
+    }
+    #stage .shelf .surface .photos .photo {
+      background: #000;
+      margin-top: -200px;
+      display: inline-block;
+      width: 200px;
+      cursor:pointer;
+      height: 200px;
+      border-radius:5px;
+      z-index:-20;
+      border: 5px solid #000000;
+    }
+    .photo::hover {
+      z-index:20;
+    }
+    #stage .shelf .surface .photos .photo:not(:last-child) {
+      margin-right: 10px;
+    }
+    #stage .shelf .surface:before {
+      height: 40px;
+      background: #422102;
+      -webkit-transform: rotateX(20deg);
+      /* Chrome, Safari, Opera  */
+      transform: rotateX(20deg);
+      transform-origin: center bottom 0;
+      -ms-transform-origin: center bottom 0;
+      /* IE 9 */
+      -webkit-transform-origin: center bottom 0;
+      /* Chrome, Safari, Opera */
+    }
+    .textAbove-1{
+      position:absolute;
+      pointer-events:none;
+      z-index:25;
+      top:21vh;
+      left:9.5%;
+    }
+    .textAbove-2{
+      position:absolute;
+      pointer-events:none;
+      z-index:25;
+      top:59vh;
+      left:9.5%;
+    }
+    .tA-1{
+      left:25.9%;
+    }
+    .tA-2{
+      left:42.33%;
+    }
+    .tA-3{
+      left:58.68%;
+    }
+    .tA-4{
+      left:75.12%;
+    }
+    span{background:black;border-radius:5px 5px 0 0;padding:8px;}
+    .spans{background:black;border-radius:5px 5px 5px 5px;padding:8px;font-size:12px;width:194px; text-align:center;}
+    .photo:hover{
+      transform:rotateY(2deg);
+    }
+    </style>
+  </head>
+  <body>
+  <header>
+  <nav>
+    <ul id="links">
+      <li id="back">← Go Back</li>
+      <li id="title">NH Net Games</li>
+      <li id="about">Credits</li>
+    </ul>
+  </nav>
+  </header>
+  <div id="about-page">All of these Games were created by Nicholas Huaman, except for NH Net Tunneler, which is a DOS (arcade) game by Geoffrey Silverton.<br>The logo designs on this site were made by Stefan Jimenez.</div>
+  <div class="textAbove-1"><span>NH Tag</span><br><br><br><br><br><br><br><br><br><div class="spans">A 2D server tag game!</div></div>
+  <div class="textAbove-1 tA-1"><span>NH Cookie Clicker</span><br><br><br><br><br><br><br><br><br><div class="spans">(Multiplayer) Click to Win!</div></div>
+  <div class="textAbove-1 tA-2"><span>Castle of Crickets</span><br><br><br><br><br><br><br><br><br><div class="spans">Control a tiny, aggressive sphere!</div></div>
+  <div class="textAbove-1 tA-3"><span>2048 Multiplayer</span><br><br><br><br><br><br><br><br><br><div class="spans">A classic, now multiplayer!</div></div>
+  <div class="textAbove-1 tA-4"><span>Towers Of Torrentious</span><br><br><br><br><br><br><br><br><br><div class="spans">Build into the sky!</div></div>
+  <section id="stage" style="margin-top: 38vh;">
+    <div class="shelf">
+      <div class="surface">
+        <div class="photos">
+          <div class="photo NHTag" style="background-image: url(img/Tag.png);background-size:200px 200px"></div>
+          <div class="photo CookieClicker" style="background-image: url(img/CookieClicker.png);background-size:200px 200px"></div>
+          <div class="photo COC" style="background-image: url(img/COC.png);background-size:200px 200px"></div>
+          <div class="photo 2048" style="background-image: url(img/2048Mult.png);background-size:200px 200px"></div>
+          <div class="photo Tower" style="background-image: url(img/Tower.png);background-size:200px 200px"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="textAbove-2"><span>NH Superhot</span><br><br><br><br><br><br><br><br><br><div class="spans">Time moves when you move!</div></div>
+  <div class="textAbove-2 tA-1"><span>Farm Simulator (PP)</span><br><br><br><br><br><br><br><br><br><div class="spans">An addictive idle game!</div></div>
+  <div class="textAbove-2 tA-2"><span>Tunneler</span><br><br><br><br><br><br><br><br><br><div class="spans">A fun 2D tank game!</div></div>
+  <div class="textAbove-2 tA-3"><span>SpaceGames</span><br><br><br><br><br><br><br><br><br><div class="spans">Rocket Games!</div></div>
+  <div class="textAbove-2 tA-4"><span>NH 3D</span><br><br><br><br><br><br><br><br><br><div class="spans">A 3D Third Person Shooter</div></div>
+  <section id="stage">
+    <div class="shelf">
+      <div class="surface">
+        <div class="photos">
+          <div class="photo SuperHot" style="background-image: url(img/NHSuperhot.png);background-size:200px 200px"></div>
+          <div class="photo Farm" style="background-image: url(img/PhenomenousPlantations.png);background-size:200px 200px"></div>
+          <div class="photo Tunneler" style="background-image: url(https://nhnet--nicholashuaman.repl.co/img/Blue.png);background-size:200px 200px"></div>
+          <div class="photo Rocket" style="background-image: url(img/SpaceGames.png);background-size:200px 200px"></div>
+          <div class="photo 3D" style="background-image: url(img/3DStuff.png);background-size:200px 200px"></div>
+          <!-- <div class="photo" style="background-image: url(img/2048Mult.png);background-size:200px 150px"></div> -->
+        </div>
+      </div>
+    </div>
+  </section>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script>
+    if(localStorage['darkmode']){
+      document.body.classList+=' darkMode';
+    }
+    $('#about').on('click',function(){
+      $('#about-page').slideToggle();
+    });
+    $('#title').on('click',function(){
+      $('#about-page').slideUp();
+    });
+    $('#back').on('click',function(){
+      $('#about-page').slideUp();
+      window.location='v8.html';
+    });
+    resize();
+    function resize(){
+      if(window.innerWidth!==1366){
+        // alert('Please make fullscreen');
+        document.body.innerHTML='<h1 style="text-align:center;">Please make width fullscreen to enjoy full functionality!</h1>';
+      }else{
+        if(document.body.innerHTML=='<h1 style="text-align:center;">Please make width fullscreen to enjoy full functionality!</h1>'){
+          window.location.reload();
+        }
+      }
+    }
+    addEventListener('resize',resize);
+    $(".NHTag").click(function () {
+      window.location = 'https://nhtag--nicholashuaman.repl.co/';
+   });
+  $(".Rocket").click(function () {
+      window.location = 'https://nhnet--nicholashuaman.repl.co/Games/rocketGame.html';
+   });
+  $(".CookieClicker").click(function () {
+      window.location = 'https://cookieclicker--nicholashuaman.repl.co';
+   });
+  
+  $(".Tunneler").click(function () {
+      window.location = 'https://nhnet--nicholashuaman.repl.co/Huamatank/';
+   });
+  
+  $('.Tower').click(function () {
+    window.location = 'https://nhnet--nicholashuaman.repl.co/Games/towerGame.html';
+  });
+  $(".SuperHot").click(function () {
+      window.location = 'https://nhnet--nicholashuaman.repl.co/super-hot/';
+   });
+  
+   $(".3D").click(function () {
+      window.location = 'https://3d--nicholashuaman.repl.co/';
+   });
+   $(".COC").click(function () {
+      window.location = 'https://castles--nicholashuaman.repl.co/';
+   });
+   $(".2048").click(function () {
+      window.location = 'https://nh-2048-server-1--nicholashuaman.repl.co/';
+   });
+  $(".Farm").click(function () {
+      window.location = 'https://nhnet--nicholashuaman.repl.co/Games/farm.html';
+   });
+  </script>
+  </body>
+</html>

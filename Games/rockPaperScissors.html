@@ -1,0 +1,450 @@
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="msapplication-tap-highlight" content="no">
+<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+<style>
+  @import 'https://fonts.googleapis.com/css?family=Roboto+Condensed';
+ @keyframes beacon {
+     0% {
+         box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.35);
+    }
+     100% {
+         box-shadow: 0 0 0 2rem transparent;
+    }
+}
+ .row {
+     display: flex;
+     flex-flow: row;
+}
+ .column {
+     display: flex;
+     flex-flow: column;
+}
+ .align-center {
+     align-items: center;
+}
+ .between {
+     justify-content: space-between;
+}
+ .around {
+     justify-content: space-around;
+}
+ .chip {
+     width: 1em;
+     height: 1em;
+     border-radius: 100%;
+     display: flex;
+     flex-flow: row;
+     align-items: center;
+     justify-content: center;
+     box-shadow: 0 0.2em 0.35em -0.15em rgba(35, 41, 44, 0.5);
+}
+ .chip .fa {
+     font-size: 65%;
+}
+ .beacon-1 {
+     animation: beacon 1s infinite linear;
+}
+ .beacon-2 {
+     animation: beacon 1s infinite linear;
+     animation-delay: 0.15s;
+}
+ .beacon-3 {
+     animation: beacon 1s infinite linear;
+     animation-delay: 0.3s;
+}
+ .bg-info {
+     background: #00bcd4;
+     color: #f3f4f5;
+}
+ .bg-success {
+     background: #cddc39;
+     color: #f3f4f5;
+}
+ .bg-alert {
+     background: #ff3b80;
+     color: #f3f4f5;
+}
+ .bg-warning {
+     background: #ff5722;
+     color: #f3f4f5;
+}
+ .bg-dark {
+     background: #23292c;
+     color: #f3f4f5;
+}
+ .bg-light {
+     background: #f3f4f5;
+     color: #23292c;
+}
+ .fg-light {
+     color: #f3f4f5;
+}
+ .fg-dark {
+     color: #23292c;
+}
+ .ghost {
+     opacity: 0.35;
+}
+ .flip-container {
+     perspective: 800;
+}
+ .flip-container.flip-me .flipper {
+     transform: rotateY(180deg);
+}
+ .flip-container, .front, .back, .answers, footer {
+     width: 100vw;
+     text-align: center;
+     margin: 0 auto;
+}
+ .answers {
+     font-size: 8vmax;
+}
+ footer {
+     font-size: 3vmax;
+}
+ footer h1 {
+     margin: 0;
+}
+ .flipper {
+     font-size: 35vmin;
+     height: 1em;
+     transition: 0.8s cubic-bezier(1, -0.5, 0.2, 1.5);
+     transform-style: preserve-3d;
+     position: relative;
+}
+ .flipper .front, .flipper .back {
+     backface-visibility: hidden;
+     -webkit-backface-visibility: hidden;
+     position: absolute;
+     top: 0;
+     height: 1em;
+     left: 50%;
+     transform: translate(-50%, 0%);
+     flex: 1;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     border-radius: 100%;
+}
+ .flipper .front {
+     z-index: 2;
+     color: #838789;
+     transform: translate(-50%, 0%) rotateY(0deg);
+}
+ .flipper .back {
+     transform: translate(-50%, 0%) rotateY(180deg);
+     width: 1em;
+}
+ article {
+     flex: 1;
+     background-size: cover;
+     background-position: center;
+     justify-content: space-around;
+     align-items: center;
+}
+ main {
+     flex: 1;
+     transform-origin: center;
+     justify-content: center;
+     color: #f3f4f5;
+     background-color: #23292c;
+     background-image: linear-gradient(170deg, #cddc39, #ff5722);
+     background-size: cover;
+     background-position: center;
+     text-align: center;
+     transform-origin: center;
+     justify-content: center;
+}
+ main .answered:not(.winner) {
+     opacity: 0.5;
+     background: none;
+}
+ main .flipper {
+     margin: 0 auto;
+}
+ main .message-wrap {
+     bottom: 35%;
+     left: 50%;
+     position: absolute;
+     transform: translateX(-50%) scale(0);
+     transition: 0.3s cubic-bezier(0.5, 0.1, 0.3, 1.4);
+     transition-delay: 0s;
+     z-index: 1;
+}
+ main .message-wrap.show {
+     bottom: 50%;
+     transform: translateX(-50%) scale(1);
+     transition-delay: 0.9s;
+}
+ main .message-wrap .message {
+     padding: 0.5em 1em;
+     justify-content: center;
+     border-radius: 3em;
+     box-shadow: 0 0 2em -0.3em rgba(18, 21, 22, .65);
+     line-height: 1.5;
+     opacity: 0.9;
+}
+ main .message-wrap .text {
+     margin-right: 1em;
+}
+ main .message-wrap div {
+     font-size: 1.5em;
+}
+ html, body {
+     height: 100%;
+}
+ body {
+     margin: 0;
+     display: flex;
+     flex-flow: column;
+     font-family: 'Roboto Condensed', Helvetica, Arial, sans-serif;
+}
+</style>
+<body ng-app="app" ng-controller="ctrl">
+  <main class="column" style="background-image: {{b}}">
+
+    <article class="column">
+      <div class="flip-container" ng-class="{'flip-me': answered}">
+        <div class="flipper">
+          <div class="front">
+            <div class="chip bg-light">
+              <!--<span class="fa fa-hand-spock-o fa-fw ghost"></span>-->
+              <img style="width:100%;height:100%;border-radius:100%;" src="https://nhnet--nicholashuaman.repl.co/NHPatrickVids/NHAssistantHead.png">
+            </div>
+          </div>
+          <div class="back">
+            <div class="chip bg-light">
+              <span class="fa fa-hand-{{splashIcon}}-o fa-fw"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="answers row around" ng-class="{'ghost': spocked}">
+        <div class="column align-center">
+          <div class="chip" ng-class="uiSetMoveClasses('rock', 1)" ng-click="uiPlay('rock')">
+            <span class="fa fa-hand-rock-o fa-fw fa-2x"></span>
+          </div>
+        </div>
+        <div class="column align-center">
+          <div class="chip" ng-class="uiSetMoveClasses('paper', 2)" ng-click="uiPlay('paper')">
+            <span class="fa fa-hand-paper-o fa-fw fa-2x"></span>
+          </div>
+        </div>
+        <div class="column align-center">
+          <div class="chip" ng-class="uiSetMoveClasses('scissors', 3)" ng-click="uiPlay('scissors')">
+            <span class="fa fa-hand-scissors-o fa-fw fa-2x"></span>
+          </div>
+        </div>
+      </div>
+
+      <footer class="row around">
+        <div>
+          <span class="ghost">Me</span>
+          <h1>{{score.me}}</h1>
+        </div>
+        <div>
+          <span class="ghost">NH Net Assistant</span>
+          <h1>{{score.spock}}</h1>
+        </div>
+      </footer>
+
+    </article>
+
+    <div class="message-wrap content {{answered}}" ng-class="{'show': answered}">
+      <div class="message row align-center" ng-click="uiPlayAgain()" ng-class="{'bg-warning': spocked, 'bg-info': winner==='tie','bg-success': winner=='me','bg-alert': winner=='spock'}">
+        <div class="text">{{message}}</div>
+        <div class="chip beacon-1">
+          <span class="fa fa-3x fa-refresh"></span>
+        </div>
+      </div>
+    </div>
+
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+  <script>
+    (function($angular, _) {
+  'use strict';
+  var _prefix = 'hullabaloo';
+  var _p1 = 'me';
+  var _p2 = 'spock';
+  var randum = function(max) {
+    return Math.round(Math.random() * max);
+  }
+
+  var hexify = function(x) {
+    return ('0' + parseInt(x).toString(16)).slice(-2);
+  }
+
+  var randex = function() {
+    return '#' + hexify(randum(255)) + hexify(randum(255)) + hexify(randum(255));
+  };
+
+  var blender = function() {
+    if (!!Math.round(Math.random())) {
+      return 'radial-gradient(circle at ' + randum(100) + '% ' + randum(100) + '%, ' + randex() + ', ' + randex() + ')';
+    } else {
+      return 'linear-gradient(' + randum(360) + 'deg, ' + randex() + ', ' + randex() + ')';
+    }
+  };
+
+  $angular.module('app', [])
+    .run(['StorageService', function(storage) {
+      var data = storage.get(_prefix);
+      if (!data) {
+        storage.save(_prefix, {
+          me: 0,
+          spock: 0
+        });
+      }
+    }])
+    .controller('ctrl', ['$scope', '$timeout', 'StorageService', function($scope, $timeout, storage) {
+      var splashIconArray = [];
+      splashIconArray = _.flatten(_.times(29, function(i) {
+        var _arr = ['rock', 'paper', 'scissors'];
+        if (i % 3 === 0) {
+          _arr.push('spock');
+        }
+        return _arr;
+      }));
+  
+      var init = function(){
+        $scope.spocked = false;
+        $scope.answered = false;
+        $scope.score = storage.get(_prefix);
+        $scope.b = blender();
+      };
+
+      var _recordScore = function(winner) {
+        var _myScore = parseInt($scope.score.me),
+          _spockScore = parseInt($scope.score.spock),
+          _prefs;
+
+        if (winner === _p1) {
+          _myScore = parseInt($scope.score.me) + 1;
+        }
+        if (winner === _p2) {
+          _spockScore = parseInt($scope.score.spock) + 1;
+        }
+        var _score = {
+          me: _myScore,
+          spock: _spockScore
+        };
+        storage.save(_prefix, _score);
+        return _score;
+      };
+
+      $scope.uiPlay = function(hand) {
+        if ($scope.answered) {
+          return;
+        }
+
+        var _winner = false;
+        var message = '';
+        $scope.splashIcon = splashIconArray[_.random(0, splashIconArray.length - 1)];
+
+        $scope.answered = hand;
+        if ($scope.splashIcon === 'spock') {
+          $scope.spocked = true;
+          _winner = _p2;
+          message = '😝 The NH Net Assistant Cheated!';
+        } else {
+          if (hand === $scope.splashIcon) {
+            _winner = 'tie';
+            message = 'It\'s a tie!';
+          } else {
+            if (hand === 'rock' && $scope.splashIcon === 'scissors' || hand === 'scissors' && $scope.splashIcon === 'paper' || hand === 'paper' && $scope.splashIcon === 'rock') {
+              _winner = _p1;
+              message = 'You won!';
+            } else {
+              _winner = _p2;
+              message = 'You lost.';
+            }
+          }
+        }
+        if (_winner !== 'tie') {
+          $scope.score = _recordScore(_winner);
+        }
+        $scope.winner = _winner;
+        $scope.message = message;
+      };
+
+      $scope.uiSetMoveClasses = function(hand, n) {
+        var classes = [];
+        if ($scope.answered === hand) {
+          classes.push('bg-dark');
+          classes.push('answered');
+          if ($scope.winner === _p1) {
+            classes.push('winner');
+          }
+        } else if (!$scope.answered) {
+          classes.push('bg-light');
+          classes.push('beacon-' + n);
+        }
+        return classes.join(' ');
+      };
+  
+      $scope.uiPlayAgain = function() {
+        init();
+      };
+  
+      init();
+    }])
+    .factory('StorageService', [function() {
+      // get item out of local storage and if it's a string, turn it into a json object
+      var get = function(key) {
+        var item = window.localStorage.getItem(key);
+        if (item && _.isString(item) && _.isEmpty(item) === false) {
+          return $angular.fromJson(item);
+        } else {
+          return item;
+        }
+      };
+
+      // save object as a json string
+      var save = function(key, data) {
+        window.localStorage.setItem(key, $angular.toJson(data));
+      };
+      // remove a specific item
+      var remove = function(key) {
+        window.localStorage.removeItem(key);
+      };
+      // blow them all away
+      var clearAll = function() {
+        window.localStorage.clear();
+      };
+
+      // Return array of keys for local storage
+      // Example use: var keys = StorageService.keys()
+      var keys = function(filter) {
+        var prefix = _prefix + (filter || '');
+        var prefixLength = prefix.length;
+        var keys = [];
+        for (var key in window.localStorage) {
+          // Only return keys that are for this app
+          if (key.substr(0, prefixLength) === prefix) {
+            try {
+              keys.push(key.substr(prefixLength + 1));
+            } catch (e) {
+              return [];
+            }
+          }
+        }
+        return keys;
+      };
+
+      return {
+        get: get,
+        save: save,
+        remove: remove,
+        clearAll: clearAll,
+        keys: keys
+      };
+    }]);
+
+})(window.angular, window._);
+  </script>
+</body>

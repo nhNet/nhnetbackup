@@ -1,0 +1,97 @@
+
+<!DOCTYPE html><html lang='en' class=''>
+<head>
+  <title>Rocket Game</title>
+  <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css'>
+<style class="cp-pen-styles">html,
+body {
+  height: 100vh;
+  width: 100vw;
+  margin:0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Luckiest Guy;
+	background:url(https://png.pngtree.com/element_our/sm/20180715/sm_5b4af12081953.png);
+	background-size:33.333% 100vh;
+  background-color: #2c3076;
+}
+.button-wrapper {
+  height: 300px;
+  width: 300px;
+	border-radius:10px;
+	-webkit-animation:skew 2s infinite;
+	        animation:skew 2s infinite;
+	-webkit-animation-delay:0.5s;
+	        animation-delay:0.5s;
+  background: linear-gradient(#6db1f9, #028fed);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 15px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.button-wrapper:hover {
+	-webkit-animation:none;
+	        animation:none;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  box-shadow: 0px 4px 15px 0px rgba(17,17,17,0.8);
+}
+@-webkit-keyframes skew{
+	0%{-webkit-transform: skew(-1deg);
+		transform: skew(-1deg);}
+	50%{-webkit-transform: skew(1deg);
+          transform: skew(1deg);}
+	100%{-webkit-transform: skew(-1deg);
+		transform: skew(-1deg);}
+}
+@keyframes skew{
+	0%{-webkit-transform: skew(-1deg);
+		transform: skew(-1deg);}
+	50%{-webkit-transform: skew(1deg);
+          transform: skew(1deg);}
+	100%{-webkit-transform: skew(-1deg);
+		transform: skew(-1deg);}
+}
+.button-wrapper .button-inner {
+  height: 75%;
+	text-align:center;
+  width: 90%;
+  background: linear-gradient(#028fed, #6db1f9);
+  -webkit-animation:skew 2s infinite;
+          animation:skew 2s infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.button-wrapper .button-inner p {
+  font-size: 3rem;
+  color: #2c3076;
+  margin: 15px 0 0 0;
+}
+.description {
+  position: absolute;
+  top: 70px;
+  width: 100vw;
+  text-align: center;
+  color: #fff;
+  letter-spacing: 1px;
+}
+.description h1 {
+  font-size: 3rem;
+  margin: 0;
+}</style></head><body>
+<div onclick="window.location='savePlanet.html'" class="button-wrapper">
+<div class="button-inner">
+<p>Save<br>the Planet</p>
+</div>
+</div>
+<div onclick="window.location='rocketLand.html'" class="button-wrapper">
+<div class="button-inner">
+<p>Land</p>
+</div>
+</div>
+</body></html>

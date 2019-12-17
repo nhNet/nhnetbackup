@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <style>
+      body{
+        margin:0;
+        background:black;
+      }
+      canvas{
+        width:100%;
+        height:100vh;
+        /* background:green; */
+      }
+      img{display:none;}
+    </style>
+  </head>
+  <body>
+    <img src="https://nhnet--nicholashuaman.repl.co/img/NH.png">
+    <img src="https://cdn12.picryl.com/photo/2016/12/31/bark-wood-tree-backgrounds-textures-e02cf1-1024.jpg">
+    <canvas id="canvas" width="1366" height="768" class="canvas"></canvas>
+    <script>
+      if(!localStorage['lool']){
+        alert("This game is undergoing development... Please wait until it is ready!!!");
+      }
+      // localStorage['lool']='true';
+      var g=function(p){
+        return document.querySelector(p);
+      },
+      b=function(p){return document.body},
+      gA=function(p){
+        return document.querySelectorAll(p);
+      },
+      can=g('.canvas'),
+      c=can.getContext('2d'),
+      cSquare=function(x,y,sx,sy,co){c.beginPath();c.rect(((x/100)*window.innerWidth)-(((sx/100)*window.innerWidth)/2),((y/100)*window.innerHeight),(sx/100)*window.innerWidth,(sy/100)*window.innerHeight);c.fillStyle = co;c.fill()},
+      clearCanvas=function(){c.clearRect(0,0,can.width,can.height);},
+      d=function(img,x,y,sx,sy){
+        c.drawImage(gA('img')[img],((x/100)*window.innerWidth)-(((sx/100)*window.innerWidth)/2),((y/100)*window.innerHeight),(sx/100)*window.innerWidth,(sy/100)*window.innerHeight);
+        // c.drawImage(gA('img')[img],x,y,sx,sy);
+      };
+      // b().onload=function(){
+      //   d(0,95,2,10,10);
+      // }
+    </script>
+    <script src="js/draggables.js"></script>
+  </body>
+</html>
